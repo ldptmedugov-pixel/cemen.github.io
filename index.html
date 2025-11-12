@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lənkəran Dövlət Peşə Təhsil Mərkəzi</title>
+<style>
+body { margin:0; font-family:Arial,sans-serif; background-color:#e6d6f2; color:#333; }
+header { text-align:center; padding:30px 0; position:relative; }
+#title { font-size:36px; margin:0; color:#4b0082; position:relative; display:inline-block; }
+#subtitle { position:absolute; left:0; top:35px; font-size:22px; color:#6a0dad; }
+/* Sosial və dil */
+.social-icons, .lang-switch { position:absolute; top:10px; }
+.social-icons { right:10px; }
+.social-icons a { margin-left:8px; color:#4b0082; font-size:20px; text-decoration:none; }
+.lang-switch { left:10px; }
+.lang-switch button { background:none; border:none; color:#4b0082; font-weight:bold; margin:0 5px; cursor:pointer; }
+/* Naviqator */
+nav { display:flex; flex-wrap:wrap; justify-content:center; background-color:#caa7e8; padding:10px 0; }
+nav button { background-color:#a970d1; border:none; color:white; padding:10px 18px; margin:5px; border-radius:6px; cursor:pointer; font-size:15px; transition:0.3s; }
+nav button:hover { background-color:#8e44ad; }
+/* Bölmələr */
+.content { padding:30px; text-align:center; }
+/* Xəbər lent */
+.news-ticker { width:90%; margin:20px auto; overflow:hidden; border-radius:10px; background-color:#c8a2d6; }
+.news-slide { display:flex; animation: scroll 15s linear infinite; }
+.news-slide img { width:400px; margin-right:10px; border-radius:10px; }
+/* Formlar */
+form input, form textarea { width:80%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #aaa; }
+form button { padding:8px 15px; margin-top:10px; border:none; border-radius:5px; background-color:#6a0dad; color:white; cursor:pointer; }
+form button:hover { background-color:#4b0082; }
+
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+</style>
+</head>
+<body>
+
+<header>
+<div class="lang-switch">
+<button onclick="changeLang('az')">AZ</button>|
+<button onclick="changeLang('en')">EN</button>|
+<button onclick="changeLang('ru')">RU</button>
+</div>
+<div class="social-icons">
+<a href="https://facebook.com" target="_blank">📘</a>
+<a href="https://instagram.com" target="_blank">📸</a>
+<a href="https://wa.me" target="_blank">💬</a>
+</div>
+<h1 id="title">
+L<span id="subtitle">Daha peşəkar gələcək</span>ənkəran Dövlət Peşə Təhsil Mərkəzi
+</h1>
+</header>
+
+<nav>
+<button onclick="showSection('home')">Ana Səhifə</button>
+<button onclick="showSection('about')">Haqqında</button>
+<button onclick="showSection('resources')">Tədris Resursları</button>
+<button onclick="showSection('curriculum')">Tədris Planı</button>
+<button onclick="showSection('specializations')">İxtisaslar</button>
+<button onclick="showSection('vacancies')">Vakansiyalar</button>
+<button onclick="showSection('studentSystem')">Tələbə-Məzun Sistemi</button>
+<button onclick="showSection('volunteer')">Könüllük Proqramı</button>
+<button onclick="showSection('feedback')">İrad və Təklifləriniz</button>
+<button onclick="showSection('contact')">Əlaqə</button>
+</nav>
+
+<div class="news-ticker">
+<div class="news-slide">
+<img src="https://source.unsplash.com/1200x200/?school">
+<img src="https://source.unsplash.com/1200x200/?students">
+<img src="https://source.unsplash.com/1200x200/?books">
+</div>
+</div>
+
+<div class="content" id="content"></div>
+
+<script>
+// Bölmələr
+function showSection(section) {
+const content=document.getElementById('content');
+if(section==='home'){content.innerHTML="<h2>Xoş Gəlmisiniz!</h2>";}
+else if(section==='about'){content.innerHTML="<h2>Haqqında</h2><p>Mərkəz haqqında məlumat buraya əlavə ediləcək.</p>";}
+else if(section==='resources'){
+content.innerHTML=`<h2>Tədris Resursları</h2>
+<input type="file" id="resourceFile"><br><br>
+<button onclick="uploadFile('resourceFile')">Yüklə</button>
+<p id="resourceMsg" style="color:green; font-weight:bold;"></p>`;}
+else if(section==='curriculum'){
+content.innerHTML=`<h2>Tədris Planı</h2>
+<input type="file" id="curriculumFile"><br><br>
+<button onclick="uploadFile('curriculumFile')">Yüklə</button>
+<p id="curriculumMsg" style="color:green; font-weight:bold;"></p>`;}
+else if(section==='specializations'){
+content.innerHTML=`<h2>İxtisaslar</h2>
+<input type="file" id="specialFile"><br><br>
+<button onclick="uploadFile('specialFile')">Yüklə</button>
+<p id="specialMsg" style="color:green; font-weight:bold;"></p>`;}
+else if(section==='vacancies'){
+content.innerHTML=`<h2>Vakansiyalar</h2>
+<input type="file" id="vacancyFile"><br><br>
+<button onclick="uploadFile('vacancyFile')">Yüklə</button>
+<p id="vacancyMsg" style="color:green; font-weight:bold;"></p>`;}
+else if(section==='studentSystem'){
+content.innerHTML=`<h2>Tələbə-Məzun Sistemi</h2>
+<input type="file" id="studentFile"><br><br>
+<button onclick="uploadFile('studentFile')">Yüklə</button>
+<p id="studentMsg" style="color:green; font-weight:bold;"></p>`;}
+else if(section==='volunteer'){
+content.innerHTML=`<h2>Könüllülük Proqramı</h2>
+<form id="volunteerForm">
+<label>Adınız:</label><br><input type="text" name="name" required><br><br>
+<label>Soyadınız:</label><br><input type="text" name="surname" required><br><br>
+<label>Email:</label><br><input type="email" name="email" required><br><br>
+<label>Telefon:</label><br><input type="tel" name="phone"><br><br>
+<button type="submit">Qeydiyyatdan keç</button>
+</form>
+<p id="volunteerMsg" style="color:green; font-weight:bold;"></p>`;
+document.getElementById('volunteerForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('volunteerMsg').textContent="Qeydiyyat uğurla tamamlandı! Təşəkkür edirik.";
+  this.reset();
+});}
+else if(section==='feedback'){
+content.innerHTML=`<h2>İrad və Təklifləriniz</h2>
+<form id="feedbackForm">
+<label>Adınız:</label><br><input type="text" name="name" required><br><br>
+<label>Email:</label><br><input type="email" name="email" required><br><br>
+<label>Təklif və ya İradınız:</label><br><textarea name="message" rows="5" cols="40" required></textarea><br><br>
+<button type="submit">Göndər</button>
+</form>
+<p id="feedbackMsg" style="color:green; font-weight:bold;"></p>`;
+document.getElementById('feedbackForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('feedbackMsg').textContent="Mesajınız uğurla göndərildi! Təşəkkür edirik.";
+  this.reset();
+});}
+else if(section==='contact'){content.innerHTML="<h2>Əlaqə</h2><p>Bizimlə əlaqə: 📧 info@ldptm.edu.az</p>";}
+}
+
+// Fayl yükləmə
+function uploadFile(fileId){
+  const fileInput=document.getElementById(fileId);
+  let msgId=fileId.replace('File','Msg');
+  if(fileInput.files.length>0){document.getElementById(msgId).textContent="Fayl uğurla seçildi: "+fileInput.files[0].name;}
+  else {document.getElementById(msgId).textContent="Fayl seçilməyib.";}
+}
+
+// Dil dəyişməsi
+function changeLang(lang){
+const title=document.getElementById('title');
+const subtitle=document.getElementById('subtitle');
+if(lang==='az'){title.childNodes[2].nodeValue="ənkəran Dövlət Peşə Təhsil Mərkəzi"; subtitle.textContent="Daha peşəkar gələcək";}
+else if(lang==='en'){title.childNodes[2].nodeValue="ankaran State Vocational Education Center"; subtitle.textContent="A more professional future";}
+else if(lang==='ru'){title.childNodes[2].nodeValue="Лянкяранский Государственный Центр Профессионального Образования"; subtitle.textContent="Более профессиональное будущее";}
+}
+
+// Səhifə yüklənəndə Ana Səhifə
+document.addEventListener('DOMContentLoaded', () => { showSection('home'); });
+</script>
+
+</body>
+</html>
